@@ -27,10 +27,12 @@ angular.module('gridshore.c3js.chart', [])
 			});
 			$scope.jsonKeys = {};
 			$scope.jsonKeys.value=[];
-			angular.forEach($scope.chartColumns, function(column) {
-				$scope.jsonKeys.value.push(column.id);
-				addColumnProperties(column.id ,column.type, column.name, column.color);
-			});
+			$scope.$watchCollection('chartColumns', function() {
+	                	angular.forEach($scope.chartColumns, function(column) {
+                			$scope.jsonKeys.value.push(column.id);
+                    			addColumnProperties(column.id ,column.type, column.name, column.color);
+		                });
+	            	});
 			if ($scope.chartX) {
 				$scope.jsonKeys.x=$scope.chartX.id;
 			}
