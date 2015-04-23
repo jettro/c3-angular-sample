@@ -33,6 +33,18 @@ bower install c3-angular --save
 ```
 In the end you just need one file in your project: c3-angular.min.js
 
+Add "gridshore.c3js.chart" to your angular module
+
+```
+angular
+.module('app', [
+    '...',
+    '...',
+    'gridshore.c3js.chart'
+    ])
+```
+
+
 ## Documentation
 Check the blogpost from Roberto above if you want an introdcution into what c3.js can do for you. If you want information about the basic usage of AngularJS together with C3.JS, check the first blogpost by Jettro. This documentation focussus on the directives.
 
