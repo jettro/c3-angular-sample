@@ -85,6 +85,11 @@ angular.module('gridshore.c3js.chart', [])
             if ($scope.yTick) {
                 config.axis.y.tick = $scope.yTick;
             }
+            if ($scope.yTickFormatFunction) {
+                config.axis.y.tick        = config.axis.y.tick || {};
+                config.axis.y.tick.format = $scope.yTickFormatFunction;
+            }
+
             if ($scope.grid != null) {
                 config.grid = $scope.grid;
             }
@@ -244,6 +249,9 @@ angular.module('gridshore.c3js.chart', [])
 
         this.addYTick = function (tick) {
             $scope.yTick = tick;
+        };
+        this.addYTickFormatFunction = function (yTickFormatFunction) {
+            $scope.yTickFormatFunction = yTickFormatFunction;
         };
 
         this.rotateAxis = function () {
@@ -813,12 +821,19 @@ angular.module('gridshore.c3js.chart', [])
             }
 
             chartCtrl.addYTick(tick);
+
+            if (attrs.tickFormatFunction) {
+                chartCtrl.addYTickFormatFunction(scope.tickFormatFunction());
+            }
+
         };
 
         return {
             "require": "^c3chart",
             "restrict": "E",
-            "scope": {},
+            "scope": {
+                "tickFormatFunction": "&"
+            },
             "replace": true,
             "link": tickLinker
         };
@@ -883,7 +898,7 @@ angular.module('gridshore.c3js.chart', [])
                         tooltip         : 'c3-tooltip',
                         tooltipName     : 'c3-tooltip-name'
                     };
-                    for (i = d[0].x; i < (d[0].x + 1); i++) {
+                    for (i = (d[0].x); i < (d[0].x + 1); i++) {
                         if (! (d[i] && (d[i].value || d[i].value === 0))) { continue; }
 
                         if (! text) {
