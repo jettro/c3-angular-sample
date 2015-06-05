@@ -30,6 +30,11 @@ angular.module('gridshore.c3js.chart', [])
             var config = {};
             config.bindto = "#" + $scope.bindto;
             config.data = {};
+            config.transition = {};
+
+            if ($scope.transitionDuration) {
+                config.transition.duration = $scope.transitionDuration;
+            }
 
             if ($scope.xValues) {
                 config.data.x = $scope.xValues;
@@ -450,9 +455,13 @@ angular.module('gridshore.c3js.chart', [])
             $scope.config.data.keys = $scope.jsonKeys;
             $scope.config.data.json = $scope.chartData;
 
-            $scope.chart = c3.generate($scope.config);
-
-            // $scope.chart.load(data);
+            if ($scope.chart) {
+                // console.log("chart loaded");
+                $scope.chart.load($scope.config.data);
+            } else {
+                // console.log("chart init");
+                $scope.chart = c3.generate($scope.config); 
+            }
         }
     }])
     .directive('c3chart', ['$timeout', function ($timeout) {
@@ -487,6 +496,7 @@ angular.module('gridshore.c3js.chart', [])
             "restrict": "E",
             "controller": "ChartController",
             "scope": {
+                "transitionDuration": "@transitionDuration",
                 "bindto": "@bindtoId",
                 "showLabels": "@showLabels",
                 "labelsFormatFunction": "&",
