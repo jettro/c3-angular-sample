@@ -47,7 +47,7 @@ function ChartColumn () {
     var columnLinker = function (scope, element, attrs, chartCtrl) {
         var column = attrs.columnValues;
 
-        if (column[0] == '[' && column.slice(-1) == ']') {
+        if (column[0] == "[" && column.slice(-1) == "]") {
             column = column.slice(1, -1);
         }
 
