@@ -45,7 +45,13 @@ angular.module('gridshore.c3js.chart')
  */
 function ChartColumn () {
     var columnLinker = function (scope, element, attrs, chartCtrl) {
-        var column = attrs.columnValues.split(",");
+        var column = attrs.columnValues;
+
+        if (column[0] == '[' && column.slice(-1) == ']') {
+            column = column.slice(1, -1);
+        }
+
+        column = column.split(",");
         column.unshift(attrs.columnId);
         chartCtrl.addColumn(column, attrs.columnType, attrs.columnName, attrs.columnColor);
     };
