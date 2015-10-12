@@ -39,7 +39,11 @@ angular.module('gridshore.c3js.chart')
             var config = {};
             config.bindto = "#" + $scope.bindto;
             config.data = {};
+            config.transition = {};
 
+            if ($scope.transitionDuration) {
+                config.transition.duration = $scope.transitionDuration;
+            }
             if ($scope.xValues) {
                 config.data.x = $scope.xValues;
             }
