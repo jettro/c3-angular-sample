@@ -12,4 +12,13 @@
  *
  *   The documentation is generated using jsdoc, and this plugin: {@link https://github.com/allenhwkim/angular-jsdoc}
  */
+(function (root, factory) {
+    if(typeof define === 'function' && define.amd) {
+        define(['c3', 'd3', 'angular'], factory);
+    } else if(typeof module === 'object' && module.exports) {
+        factory(require('c3'), require('d3'), require('angular'));
+    } else {
+        factory(root.c3, root.d3, root.angular);
+    }
+}(this, function(c3, d3, angular) {
 angular.module('gridshore.c3js.chart', []);
