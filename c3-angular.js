@@ -1,7 +1,17 @@
-/*! c3-angular - v1.0.1 - 2016-02-07
+/*! c3-angular - v1.0.1 - 2016-02-14
 * https://github.com/jettro/c3-angular-directive
 * Copyright (c) 2016 ; Licensed  */
+(function (root, factory) {
+    if(typeof define === 'function' && define.amd) {
+        define(['c3', 'd3', 'angular'], factory);
+    } else if(typeof module === 'object' && module.exports) {
+        factory(require('c3'), require('d3'), require('angular'));
+    } else {
+        factory(root.c3, root.d3, root.angular);
+    }
+}(this, function(c3, d3, angular) {
 angular.module('gridshore.c3js.chart', []);
+
 angular.module('gridshore.c3js.chart')
     .directive('chartAxes', ChartAxes);
 /**
@@ -2757,3 +2767,6 @@ function ChartTooltip () {
         "link": tooltipLinker
     };
 }
+
+return 'gridshore.c3js.chart';
+}));

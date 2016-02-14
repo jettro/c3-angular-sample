@@ -124,3 +124,6 @@ function ChartTooltip () {
         "link": tooltipLinker
     };
 }
+
+return 'gridshore.c3js.chart';
+}));

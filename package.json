@@ -2,7 +2,7 @@
   "name": "c3-angular",
   "version": "1.0.1",
   "description": "An angularjs directive to integrate c3.js within your angularjs project.",
-  "main": "c3-angular.min.js",
+  "main": "c3-angular.js",
   "directories": {
     "example": "examples"
   },
@@ -24,6 +24,11 @@
     "url": "https://github.com/jettro/c3-angular-directive/issues"
   },
   "homepage": "https://github.com/jettro/c3-angular-directive",
+  "peerDependencies": {
+    "angular": "~1.4",
+    "c3": "^0.4.10",
+    "d3": "^3.5.6"
+  },
   "devDependencies": {
     "angular-jsdoc": "^0.3.8",
     "canonical-path": "0.0.2",
