@@ -38,6 +38,9 @@
             {"id": "data4", "type": "donut"},
             {"id": "data5", "type": "donut"}];
         vm.selectedItems = [];
+        vm.title = {
+           text: "I'm a title"
+        };
 
         vm.formatDonut = formatDonut;
         vm.handleCallback = handleCallback;
