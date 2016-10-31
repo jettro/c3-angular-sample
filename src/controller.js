@@ -365,7 +365,7 @@ function ChartController($scope, $timeout) {
                     $scope.chart = $scope.chart.destroy();
                     resetVars();
                 }
-            }, 10000)
+            }, 500)
         });
     }
 
