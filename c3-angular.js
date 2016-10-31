@@ -1,4 +1,4 @@
-/*! c3-angular - v1.3.1 - 2016-08-04
+/*! c3-angular - v1.3.1 - 2016-10-31
 * https://github.com/jettro/c3-angular-directive
 * Copyright (c) 2016 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
@@ -1407,7 +1407,7 @@ function ChartController($scope, $timeout) {
                     $scope.chart = $scope.chart.destroy();
                     resetVars();
                 }
-            }, 10000)
+            }, 500)
         });
     }
 
