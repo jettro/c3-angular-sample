@@ -47,6 +47,7 @@ function ChartController($scope, $timeout) {
     this.addXSValues = addXSValues;
 
     this.addChartCallbackFunction = addChartCallbackFunction;
+    this.addSortDataFunction = addSortDataFunction;
     this.addInitialConfig = addInitialConfig;
 
     this.addDataLabelsFormatFunction = addDataLabelsFormatFunction;
@@ -161,6 +162,9 @@ function ChartController($scope, $timeout) {
             } else {
                 config.data.order = $scope.sorting;
             }
+        }
+        if ($scope.sortDataFunction) {
+            config.data.order = $scope.sortDataFunction;
         }
         if ($scope.transitionDuration != null) {
             config.transition = config.transition || {};
@@ -395,6 +399,10 @@ function ChartController($scope, $timeout) {
 
     function addChartCallbackFunction(chartCallbackFunction) {
         $scope.chartCallbackFunction = chartCallbackFunction;
+    }
+
+    function addSortDataFunction(sortDataFunction) {
+        $scope.sortDataFunction = sortDataFunction;
     }
 
     function addTransitionDuration(transitionDuration) {

@@ -1,4 +1,4 @@
-/*! c3-angular - v1.3.1 - 2016-10-31
+/*! c3-angular - v1.3.1 - 2016-11-23
 * https://github.com/jettro/c3-angular-directive
 * Copyright (c) 2016 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
@@ -765,6 +765,10 @@ angular.module('gridshore.c3js.chart')
  * 
  *   {@link http://c3js.org/reference.html#data-order| c3js doc}
  *
+ * @param {Function} sort-data-function Provide a function for sorting.
+ *
+ *   {@link http://c3js.org/reference.html#data-order| c3js doc}
+ *
  * @param {Boolean} show-labels Configure to show the labels 'true' or not, default is false.
  * 
  *   {@link http://c3js.org/reference.html#data-labels| c3js doc}
@@ -887,6 +891,9 @@ function C3Chart ($timeout) {
         if (attrs.callbackFunction) {
             chartCtrl.addChartCallbackFunction(scope.callbackFunction());
         }
+        if (attrs.sortDataFunction) {
+            chartCtrl.addSortDataFunction(scope.sortDataFunction());
+        }
         if (transitionDuration) {
             chartCtrl.addTransitionDuration(transitionDuration);
         }
@@ -914,6 +921,7 @@ function C3Chart ($timeout) {
             "chartColumns": "=chartColumns",
             "chartX": "=chartX",
             "callbackFunction": "&",
+            "sortDataFunction": "&",
             "emptyLabel": "@emptyLabel"
         },
         "template": "<div><div id='{{bindto}}'></div><div ng-transclude></div></div>",
@@ -1089,6 +1097,7 @@ function ChartController($scope, $timeout) {
     this.addXSValues = addXSValues;
 
     this.addChartCallbackFunction = addChartCallbackFunction;
+    this.addSortDataFunction = addSortDataFunction;
     this.addInitialConfig = addInitialConfig;
 
     this.addDataLabelsFormatFunction = addDataLabelsFormatFunction;
@@ -1203,6 +1212,9 @@ function ChartController($scope, $timeout) {
             } else {
                 config.data.order = $scope.sorting;
             }
+        }
+        if ($scope.sortDataFunction) {
+            config.data.order = $scope.sortDataFunction;
         }
         if ($scope.transitionDuration != null) {
             config.transition = config.transition || {};
@@ -1437,6 +1449,10 @@ function ChartController($scope, $timeout) {
 
     function addChartCallbackFunction(chartCallbackFunction) {
         $scope.chartCallbackFunction = chartCallbackFunction;
+    }
+
+    function addSortDataFunction(sortDataFunction) {
+        $scope.sortDataFunction = sortDataFunction;
     }
 
     function addTransitionDuration(transitionDuration) {
