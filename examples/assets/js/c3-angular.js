@@ -1,6 +1,6 @@
-/*! c3-angular - v1.3.1 - 2016-11-23
+/*! c3-angular - v1.3.1 - 2017-01-05
 * https://github.com/jettro/c3-angular-directive
-* Copyright (c) 2016 ; Licensed  */
+* Copyright (c) 2017 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
 angular.module('gridshore.c3js.chart')
     .directive('chartAxes', ChartAxes);
@@ -2719,22 +2719,23 @@ angular.module('gridshore.c3js.chart')
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
  */
-function Selection () {
+function Selection() {
     var selectionLinker = function (scope, element, attrs, chartCtrl) {
         var enabled = attrs.enabled;
         var grouped = attrs.grouped;
         var multiple = attrs.multiple;
+        var selection = {};
 
         if (enabled && enabled === 'true') {
-            var selection = {"enabled": true};
-            if (grouped && grouped === 'true') {
-                selection.grouped = true;
-            }
-            if (multiple && multiple === 'true') {
-                selection.multiple = true;
-            }
-            chartCtrl.addSelection(selection);
+            selection.enabled = true;
         }
+        if (grouped && grouped === 'true') {
+            selection.grouped = true;
+        }
+        if (multiple && multiple === 'true') {
+            selection.multiple = true;
+        }
+        chartCtrl.addSelection(selection);
     };
 
     return {
