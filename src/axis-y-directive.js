@@ -97,13 +97,13 @@ function ChartAxisY() {
             paddingBottom = (paddingBottom) ? paddingBottom : 0;
             axis.padding = {"top": parseInt(paddingTop), "bottom": parseInt(paddingBottom)};
         }
-        var axisMax = attrs.axisMax;
-        var axisMin = attrs.axisMin;
-        if (axisMax) {
-            axis.max = parseInt(axisMax);
+        var rangeMax = attrs.rangeMax;
+        var rangeMin = attrs.rangeMin;
+        if (rangeMax) {
+            axis.max = parseInt(rangeMax);
         }
-        if (axisMin) {
-            axis.min = parseInt(axisMin);
+        if (rangeMin) {
+            axis.min = parseInt(rangeMin);
         }
         if (attrs.axisInverted === 'true') {
             axis.inverted=true;
