@@ -58,6 +58,7 @@ function ChartController($scope, $timeout) {
 
     this.addGauge = addGauge;
     this.addGaugeLabelFormatFunction = addGaugeLabelFormatFunction;
+    this.addGaugeLabelExtentsFunction = addGaugeLabelExtentsFunction;
 
     this.addBar = addBar;
 
@@ -279,6 +280,10 @@ function ChartController($scope, $timeout) {
         if ($scope.gaugeLabelFormatFunction) {
             config.gauge.label = config.gauge.label || {};
             config.gauge.label.format = $scope.gaugeLabelFormatFunction;
+        }
+        if ($scope.gaugeLabelExtentsFunction) {
+            config.gauge.label = config.gauge.label || {};
+            config.gauge.label.extents = $scope.gaugeLabelExtentsFunction;
         }
         if ($scope.point != null) {
             config.point = $scope.point;
@@ -601,6 +606,10 @@ function ChartController($scope, $timeout) {
 
     function addGaugeLabelFormatFunction(gaugeLabelFormatFunction) {
         $scope.gaugeLabelFormatFunction = gaugeLabelFormatFunction;
+    }
+
+    function addGaugeLabelExtentsFunction(gaugeLabelExtentsFunction) {
+        $scope.gaugeLabelExtentsFunction = gaugeLabelExtentsFunction;
     }
 
     function addBar(bar) {

@@ -74,13 +74,17 @@ function ChartGauge () {
         if (attrs.labelFormatFunction) {
             chartCtrl.addGaugeLabelFormatFunction(scope.labelFormatFunction());
         }
+        if (attrs.labelExtentsFunction) {
+            chartCtrl.addGaugeLabelExtentsFunction(scope.labelExtentsFunction());
+        }
     };
 
     return {
         require: '^c3chart',
         restrict: 'E',
         scope: {
-            'labelFormatFunction': "&"
+            'labelFormatFunction': "&",
+            'labelExtentsFunction': "&"
         },
         replace: true,
         link: gaugeLinker
